@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <style>
+        .table1 {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px dotted black;
+        }
+        .table2
+        {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+        .table1 th,.table1 td {
+            border: 1px dotted black;
+            padding: 8px;
+            text-align: left;
+        }
+        .table2 th,.table2 td {
+            border: 1px dotted black;
+            padding: 8px;
+            text-align: right;
+        }
+        th.invoice-header {
+            text-align: right;
+            font-size: 24px;
+        }
+        td.vertical-align-top {
+            vertical-align: top; /* Align content to the top */
+            font-weight: bolder;
+        }
+    </style>
+</head>
+<body>
+    <table class="table1">
+        <tr>
+            <th>Company Name
+                <br>
+                <img src="" alt="Company logo">
+            </th>
+            <th colspan="3" class="invoice-header">INVOICE</th>
+        </tr>
+        <tr>
+            <td colspan="3"></td>
+            <th>DATE:[Enter Date]
+                <br>INVOICE #
+                <br>number/month/2023
+            </th>
+        </tr>
+        <tr>
+            <td class="vertical-align-top">FROM:</td>
+            <th class="vertical-align-top">[CompanyName] <br>
+                Email <br>
+                address1 <br>
+                address2 <br>
+                phone
+            </th>
+            <td class="vertical-align-top">
+                To:
+            </td>
+            <th class="vertical-align-top">
+                client name <br> email <br> address1 <br>address2 <br>phone
+            </th>
+        </tr>
+        <tr>
+            <th>DUE:</th>
+            <td class="vertical-align-top">payment due date</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <br>
+    <table class="table2">
+        <thead>
+            <th>Item Description</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Amount</th>
+        </thead>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="3">subtotal</td>
+             
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="3">tax</td>
+             
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="3">balance DUE</td>
+             
+            <td></td>
+        </tr>
+    </table>
+</body>
+</html>
