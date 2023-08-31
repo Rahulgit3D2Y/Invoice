@@ -5,65 +5,125 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Option 1: Include in HTML -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <title>Invoice List</title>
+  <script>
+        var sortDirections = {}; // To store the current sorting direction for each column
+
+        function parseDate(dateString) {
+            // Convert a date string like "Thursday, April 13th, 2023" to a Date object
+            return new Date(dateString.replace(/(\d+)(st|nd|rd|th)/, '$1'));
+        }
+
+        function parseCurrencyValue(currencyString) {
+            // Convert a currency string like "Rs 1,841.98 INR" to a numerical value
+            return parseFloat(currencyString.replace(/[^\d.-]/g, ''));
+        }
+
+        function sortTable(columnIndex) {
+            var table, rows, switching, i, x, y, shouldSwitch, dir;
+            table = document.querySelector(".table");
+            switching = true;
+            dir = sortDirections[columnIndex] || "asc"; // Default to ascending if not defined
+            
+            while (switching) {
+                switching = false;
+                rows = table.getElementsByTagName("tr");
+                
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("td")[columnIndex];
+                    y = rows[i + 1].getElementsByTagName("td")[columnIndex];
+                    
+                    var xValue, yValue;
+                    if (columnIndex === 1) { // If sorting by Date column
+                        xValue = parseDate(x.innerHTML);
+                        yValue = parseDate(y.innerHTML);
+                    } else if (columnIndex === 2) { // If sorting by Due Date column
+                        xValue = parseDate(x.innerHTML);
+                        yValue = parseDate(y.innerHTML);
+                    } else if (columnIndex === 3) { // If sorting by Total column
+                        xValue = parseCurrencyValue(x.innerHTML);
+                        yValue = parseCurrencyValue(y.innerHTML);
+                    } else {
+                        xValue = x.innerHTML.toLowerCase();
+                        yValue = y.innerHTML.toLowerCase();
+                    }
+                    
+                    if ((dir === "asc" && xValue > yValue) || (dir === "desc" && xValue < yValue)) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+                
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                }
+            }
+            
+            sortDirections[columnIndex] = dir === "asc" ? "desc" : "asc"; // Toggle sorting direction
+        }
+    </script>
 </head>
 
 <body>
     <div class="container mt-4 p-5">
         <div class="row">
-            <div class="col-md-10 offset-md-1">
+            <div class="col-md-10 offset-md-1 table-responsive">
                 <h1>Invoice List</h1>
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col" data-column="number">Invoice #</th>
-                            <th scope="col" data-column="date">Invoice Date</th>
-                            <th scope="col" data-column="due">Due Date</th>
-                            <th scope="col" data-column="total">Total</th>
-                            <th scope="col" data-column="status">Status</th>
+                            <th scope="col" onclick="sortTable(0)">Invoice #<i class="bi bi-arrow-down-up"></i></th>
+                            <th scope="col" onclick="sortTable(1)">Invoice Date<i class="bi bi-arrow-down-up"></i></th>
+                            <th scope="col" onclick="sortTable(2)">Due Date<i class="bi bi-arrow-down-up"></i></th>
+                            <th scope="col" onclick="sortTable(3)">Total<i class="bi bi-arrow-down-up"></i></th>
+                            <th scope="col" onclick="sortTable(4)">Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>2023041366</td>
-                            <td>Thursday, April 13th,2023</td>
+                            <td>2023041361</td>
+                            <td>Thursday, may 13th,2023</td>
                             <td>Thursday, April 13th, 2023</td>
-                            <td>Rs 1,841.98 INR</td>
+                            <td>Rs1 INR</td>
                             <td>
                                 <div class="bg-success btn text-white">paid</div>
                             </td>
                         </tr>
                         <tr>
-                            <td>2023041366</td>
-                            <td>Thursday, April 13th,2023</td>
+                            <td>2023041362</td>
+                            <td>Thursday, feb 13th,2023</td>
                             <td>Thursday, April 13th, 2023</td>
-                            <td>Rs 1,841.98 INR</td>
+                            <td>Rs 2 INR</td>
                             <td>
                                 <div class="bg-success btn text-white">paid</div>
                             </td>
                         </tr>
                         <tr>
-                            <td>2023041366</td>
+                            <td>2023041365</td>
                             <td>Thursday, April 13th,2023</td>
-                            <td>Thursday, April 13th, 2023</td>
-                            <td>Rs 1,841.98 INR</td>
+                            <td>Thursday, jan 13th, 2023</td>
+                            <td>Rs3 INR</td>
                             <td>
                                 <div class="bg-success btn text-white">paid</div>
                             </td>
                         </tr>
                         <tr>
-                            <td>2023041366</td>
+                            <td>2023041363</td>
                             <td>Thursday, April 13th,2023</td>
-                            <td>Thursday, April 13th, 2023</td>
-                            <td>Rs 1,8.98 INR</td>
+                            <td>Thursday, April 13th, 2022</td>
+                            <td>Rs 4 INR</td>
                             <td>
                                 <div class="bg-success btn text-white">paid</div>
                             </td>
                         </tr>
                         <tr>
-                            <td>2023041366</td>
-                            <td>Thursday, April 13th,2023</td>
-                            <td>Thursday, April 13th, 2023</td>
+                            <td>2023041364</td>
+                            <td>Thursday,dec 13th,2023</td>
+                            <td>Thursday, April 13th, 2021</td>
                             <td>Rs 1,1.98 INR</td>
                             <td>
                                 <div class="bg-success btn text-white">paid</div>
